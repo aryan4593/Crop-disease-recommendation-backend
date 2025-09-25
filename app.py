@@ -6,9 +6,6 @@ import os
 
 app = Flask(__name__)
 
-# ---- Ensure runtime dirs exist ----
-os.makedirs("uploads", exist_ok=True)
-
 # ---- Load your model ----
 MODEL_PATH = "plant_disease_model_final.keras"
 model = tf.keras.models.load_model(MODEL_PATH)
@@ -48,4 +45,5 @@ def index():
     return render_template("index.html")  # simple upload form
 
 if __name__ == "__main__":
+    os.makedirs("uploads", exist_ok=True)
     app.run(debug=True, host="0.0.0.0", port=5000)
